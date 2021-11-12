@@ -7,15 +7,15 @@ class App extends Component {
   state = {
     comentarios: [
       {
-        nome: "Julia",
+        nome: "Júlia Mendes",
         email: "julia@email.com",
-        data: new Date(2020, 3, 10),
+        data: new Date(2020, 3, 10, 17, 30, 0),
         mensagem: "Olá, tudo bem?",
       },
       {
-        nome: "Maria",
+        nome: "Maria Souza",
         email: "maria@email.com",
-        data: new Date(2020, 3, 11),
+        data: new Date(2020, 3, 11, 12, 15, 0),
         mensagem: "Olá, tudo sim",
       },
     ],
@@ -42,12 +42,11 @@ class App extends Component {
     this.setState({ comentarios: lista})
   }
 
-  digitacao = evento =>{
-    const {name, value} = evento.target.value;
+  digitacao = evento => {
+    const {name, value} = evento.target;
    
     this.setState({novoComentario:{...this.state.novoComentario, [name]: value}})
   }
-
   render() {
     return (
       <div className="App">
@@ -63,16 +62,16 @@ class App extends Component {
             {comentario.mensagem}
           </Comentario>
         ))}
-        <form method="post" onSubmit={this.adicionarComentario}>
+        <form method="post" onSubmit={this.adicionarComentario} className="Novo-Comentario">
           <h2>Adicionar comentário</h2>
           <div>
-            <input type="text" name="nome" value={this.state.novoComentario.nome} onChange={this.digitacao} placeholder="Digite seu nome" />
+            <input type="text" name="nome" value={this.state.novoComentario.nome} required onChange={this.digitacao} placeholder="Digite seu nome" />
           </div>
           <div>
-            <input type="email" name="email" value={this.state.novoComentario.email} onChange={this.digitacao} placeholder="Digite seu email" />
+            <input type="email" name="email" value={this.state.novoComentario.email} required onChange={this.digitacao} placeholder="Digite seu email" />
           </div>
           <div>
-            <textarea name="mensagem" onChange={this.digitacao} value={this.state.novoComentario.mensagem} rows="4"/>
+            <textarea name="mensagem" onChange={this.digitacao} required value={this.state.novoComentario.mensagem} rows="4"/>
           </div>
           <button type="submit">Adicionar Comentário</button>
         </form>
